@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+
+main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  final List<Contato> contatos = [
+    Contato(nome: "Amanda", email: "amandadantasds@gmail.com"),
+    Contato(nome: "Marcela", email: "marcelastade@gmail.com"),
+    Contato(nome: "Gabriel", email: "gabrielduarte@gmail.com"),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Contacts', style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.blue,
+        ),
+        body: ListView.builder(
+          itemCount: contatos.length,
+
+          itemBuilder: (context, index) {
+            return ListTile(
+              leading: CircleAvatar(
+                child: Text(
+                  contatos[index].nome[0],
+                  style: TextStyle(color: Colors.white),
+                ),
+                backgroundColor: Colors.blue,
+              ),
+              title: Text(contatos[index].nome),
+              subtitle: Text(contatos[index].email),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class Contato {
+  Contato({required this.nome, required this.email});
+
+  final nome;
+  final email;
+}
